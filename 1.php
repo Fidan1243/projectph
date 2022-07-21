@@ -2,6 +2,7 @@
 
 $op = isset($_REQUEST["operation"]) ? ($_REQUEST["operation"]) :''; 
 $op2 = isset($_REQUEST) ? ($_REQUEST) :''; 
+$b = "";
 
 ?>
 
@@ -32,7 +33,8 @@ $op2 = isset($_REQUEST) ? ($_REQUEST) :'';
             echo "<form>";
             for ($i=1; $i <= $op; $i++) { 
                 echo '<input name="operation" value="'.$op.'" hidden/>';
-                echo '<input type="checkbox" name="'.$i.'"/>';
+                $chk = substr($b,$i-1,1)=='1' ? 'checked' :'';
+                echo '<input type="checkbox" '.$chk.' name="'.$i.'"/>';
             }
             echo '<input type="submit" value="="/>';
             echo "</form>";
@@ -42,7 +44,7 @@ $op2 = isset($_REQUEST) ? ($_REQUEST) :'';
             if (($key = array_search("operation", $keys)) !== false) {
                 unset($keys[$key]);
             }
-            $b = "";
+            
             for ($i=1; $i <= $op; $i++) { 
             for ($k=1; $k <= count($keys); $k++) {
                 if(($key = array_search($i, $keys)) !== false){
